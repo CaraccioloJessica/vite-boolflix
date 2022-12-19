@@ -29,12 +29,22 @@ export default {
 <style lang="scss" scoped>
 @use '../styles/partials/variables' as *;
 
-.container {
-  justify-content: space-between;
-  align-items: center;
+header {
+  background-color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  margin-bottom: 10px;
 
-  h1 {
-    color: $accent;
+  .container {
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+      color: $accent;
+    }
   }
 }
 </style>
