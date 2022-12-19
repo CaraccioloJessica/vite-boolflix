@@ -37,7 +37,7 @@ export default {
 
 <template>
   <div class="container">
-    <!-- cicla nell'array -->
+    <!-- cicla nell'array dei film-->
     <div class="card" v-for="movie in store.moviesList" :key="movie.id">
       <!-- immagine del film -->
       <img :src="`https://image.tmdb.org/t/p/w185${movie.poster_path}`" alt="">
@@ -48,6 +48,19 @@ export default {
       </h5>
       <!-- votazione film -->
       <h5>{{ movie.vote_average }}</h5>
+    </div>
+
+    <!-- array delle serie tv -->
+    <div class="card" v-for="tv in store.tvList" :key="tv.id">
+      <!-- immagine -->
+      <img :src="`https://image.tmdb.org/t/p/w185${tv.poster_path}`" alt="">
+      <!-- titolo -->
+      <h4>{{ tv.name }}</h4>
+      <!-- condizione per bandiera o stringa lingua -->
+      <h5 :innerHTML="displayLanguage(tv.original_language)">
+      </h5>
+      <!-- votazione film -->
+      <h5>{{ tv.vote_average }}</h5>
     </div>
   </div>
 </template>
