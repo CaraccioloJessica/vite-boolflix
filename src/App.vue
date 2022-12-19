@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     getMovies() {
-      let myUrl = store.apiURL;
+      let myUrl = store.moviesAPI;
 
       // se l'utente scrive il nome di un film, myUrl viene sostituito dalla query del film cercato e simili
       if (store.searchText !== '') {
@@ -33,7 +33,7 @@ export default {
         )
     },
     getTv() {
-      let myUrl = store.apiURL;
+      let myUrl = store.tvAPI;
 
       if (store.searchText !== '') {
         myUrl = `https://api.themoviedb.org/3/search/tv?api_key=6fd82c7e095558dcca8a44519f3dc58a&query=${store.searchText}`
