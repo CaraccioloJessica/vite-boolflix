@@ -33,7 +33,8 @@ export default {
     <!-- cicla nell'array dei film-->
     <div class="card" v-for="movie in store.moviesList" :key="movie.id">
       <!-- immagine del film -->
-      <img :src="`https://image.tmdb.org/t/p/w185${movie.poster_path}`" alt="">
+      <img :src="movie.poster_path ? `https://image.tmdb.org/t/p/w185${movie.poster_path}` : 'img/image-not-found.jpg'"
+        alt="">
       <!-- titolo film -->
       <h4>{{ movie.title }}</h4>
       <!-- condizione per bandiera o stringa lingua -->
@@ -51,7 +52,8 @@ export default {
     <!-- array delle serie tv -->
     <div class="card" v-for="tv in store.tvList" :key="tv.id">
       <!-- immagine -->
-      <img :src="`https://image.tmdb.org/t/p/w185${tv.poster_path}`" alt="">
+      <img :src="tv.poster_path ? `https://image.tmdb.org/t/p/w185${tv.poster_path}` : 'img/image-not-found.jpg'"
+        alt="">
       <!-- titolo -->
       <h4>{{ tv.name }}</h4>
       <!-- condizione per bandiera o stringa lingua -->
@@ -69,13 +71,22 @@ export default {
 <style lang="scss" scoped>
 @use '../styles/partials/variables' as *;
 
-.card {
-  color: $text;
-  margin: 20px;
-  width: 185px;
+.container {
+  margin-top: 50px;
 
-  span {
-    color: yellow;
+  .card {
+    color: $text;
+    width: 185px;
+
+    img {
+      width: 185px;
+      height: 278px;
+      object-fit: cover;
+    }
+
+    span {
+      color: yellow;
+    }
   }
 }
 </style>
