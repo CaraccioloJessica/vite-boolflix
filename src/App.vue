@@ -31,17 +31,35 @@ export default {
           store.moviesList = res.data.results
         }
         )
-    }
+    },
+    getTv() {
+      let myUrl = store.apiURL;
+
+      if (store.searchText !== '') {
+        myUrl = `https://api.themoviedb.org/3/search/tv?api_key=6fd82c7e095558dcca8a44519f3dc58a&query=${store.searchText}`
+      }
+
+      axios
+        .get(myUrl)
+        .then(res => {
+          store.tvList = res.data.results
+        }
+        )
+    },
+    searchBoth() {
+      this.getMovies()
+      this.getTv()
+    },
   },
   mounted() {
-    this.getMovies();
+    this.searchBoth()
   }
 }
 
 </script>
 
 <template>
-  <Header @search="getMovies" />
+  <Header @search="searchBoth" />
   <main>
     <MoviesCardList />
   </main>
