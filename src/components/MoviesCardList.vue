@@ -12,24 +12,17 @@ export default {
       if (language === 'en') {
         return '<img class="flag" src="https://flagcdn.com/16x12/gb.png" alt="uk-flag" />';
       }
-      else if (language === 'es') {
-        return '<img class="flag" src="https://flagcdn.com/16x12/es.png" alt="es-flag" />';
-      }
-      else if (language === 'ru') {
-        return '<img class="flag" src="https://flagcdn.com/16x12/ru.png" alt="ru-flag" />';
-      }
-      else if (language === 'fr') {
-        return '<img class="flag" src="https://flagcdn.com/16x12/fr.png" alt="fr-flag" />';
-      }
       else if (language === 'it') {
         return '<img class="flag" src="https://flagcdn.com/16x12/it.png" alt="it-flag" />';
-      }
-      else if (language === 'ja') {
-        return '<img class="flag" src="https://flagcdn.com/16x12/jp.png" alt="jp-flag" />';
       }
       else {
         return language;
       }
+    },
+
+    rating(voteAverage) {
+      let vote = Math.round(voteAverage / 2);
+      return vote;
     }
   }
 }
@@ -47,7 +40,12 @@ export default {
       <h5 :innerHTML="displayLanguage(movie.original_language)">
       </h5>
       <!-- votazione film -->
-      <h5>{{ movie.vote_average }}</h5>
+      <div>
+        <!-- stampa stelle in base alla votazione -->
+        <span v-for="star in rating(movie.vote_average)">&#9733;</span>
+        <!-- stampa le rimanenti stelle vuote, facendo la differenza tra un intervallo di 5 numeri meno il voto arrotondato del metodo-->
+        <span v-for="star in 5 - rating(movie.vote_average)">&#9734;</span>
+      </div>
     </div>
 
     <!-- array delle serie tv -->
@@ -59,8 +57,11 @@ export default {
       <!-- condizione per bandiera o stringa lingua -->
       <h5 :innerHTML="displayLanguage(tv.original_language)">
       </h5>
-      <!-- votazione film -->
-      <h5>{{ tv.vote_average }}</h5>
+      <!-- votazione serie -->
+      <div>
+        <span v-for="star in rating(tv.vote_average)">&#9733;</span>
+        <span v-for="star in 5 - rating(tv.vote_average)">&#9734;</span>
+      </div>
     </div>
   </div>
 </template>
@@ -72,5 +73,9 @@ export default {
   color: $text;
   margin: 20px;
   width: 185px;
+
+  span {
+    color: yellow;
+  }
 }
 </style>
