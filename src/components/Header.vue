@@ -13,7 +13,7 @@ export default {
 <template>
   <header>
     <div class="container">
-      <h1>Boolflix</h1>
+      <h1><a href="">BOOLFLIX</a></h1>
 
       <div class="search_bar">
         <!-- ricerca nell'api in base a cosa scrive l'utente -->
