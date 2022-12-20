@@ -30,7 +30,7 @@ export default {
 
 <template>
   <div class="container">
-    <!-- cicla nell'array dei film-->
+    <!-- cicla nell'array dei film e quando il mouse va sulla specifica card (con id) del film, appaiono le info-->
     <div class="card" v-for="movie in store.moviesList" :key="movie.id" @mouseover="active[movie.id] = true"
       @mouseout="active[movie.id] = false">
       <!-- immagine del film -->
@@ -58,7 +58,7 @@ export default {
       </div>
     </div>
 
-    <!-- array delle serie tv -->
+    <!--cicla nell' array delle serie tv e quando il mouse va sulla specifica card (con id) della serie, appaiono le info-->
     <div class="card" v-for="tv in store.tvList" :key="tv.id" @mouseover="active[tv.id] = true"
       @mouseout="active[tv.id] = false">
 
@@ -98,6 +98,7 @@ export default {
   margin-top: 50px;
 
   .card {
+    cursor: pointer;
     position: relative;
     color: $text;
     width: 185px;
@@ -120,8 +121,8 @@ export default {
 
       h4,
       .rating {
-        font-size: 0.9rem;
-        margin-bottom: 5px;
+        font-size: 0.8rem;
+        margin-bottom: 10px;
       }
 
       span {
